@@ -12,3 +12,6 @@ screenshots/
 *.p12
 *.pfx
 coverage/
+dist/server/
+dist/.openai/
+.pages-output/

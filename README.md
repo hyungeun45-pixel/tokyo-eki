@@ -30,7 +30,7 @@ node --test tests/*.test.mjs
 
 ## GitHub에 올리고 웹사이트 배포하기
 
-GitHub 저장소는 소스 코드를 보관하고, GitHub Pages는 플레이 가능한 웹 주소를 제공합니다. `.github/workflows/deploy-pages.yml`에 자동 배포 설정을 준비해 두었습니다.
+GitHub 저장소는 소스 코드를 보관하고, GitHub Pages는 플레이 가능한 웹 주소를 제공합니다. `.github/workflows/deploy-pages.yml`에 자동 배포 설정을 준비해 두었습니다. 워크플로는 `scripts/build-pages.mjs`로 공개할 브라우저 파일만 `.pages-output/`에 모아 배포합니다. 별도의 빌드 패키지 설치는 필요하지 않습니다.
 
 공개 전에는 [SECURITY.md](./SECURITY.md)의 계정 보호·저장소 권한·HTTPS·응답 헤더 항목을 확인하세요. 게임은 외부 스크립트와 자산 없이 실행되며, GitHub Actions는 커밋 SHA 고정 및 최소 권한 설정을 사용합니다. GitHub Pages에서는 `_headers` 설정이 자동 적용되지 않는 한계도 문서에 적었습니다.
 
@@ -85,6 +85,8 @@ git push github HEAD:main
 ## 구조와 확장
 
 `dist/index.html`, `style.css`: 화면과 반응형 스타일. `app.js`: 게임 진행과 수첩. `engine.js`: 시간·진행·한글 삭제·설정 검증. `game.js`: 입력 판정과 노선 순서. `stations.js`: 공식 역 데이터. `places.js`: 명소와 먹거리 설명. `map.js`, `geo.js`: 학습용 지도·카메라·열차 이동. `art.js`: 직접 제작한 명소·음식·열차 삽화. `storage.js`: 저장 데이터 검증·출력 이스케이프·외부 링크 검증. `_headers`: 지원하는 호스팅용 보안 응답 헤더.
+
+Sites에는 `node scripts/build-worker.mjs`로 같은 게임 파일과 보안 헤더를 포함하는 `dist/server/index.js`를 생성해 배포합니다. 이 파일은 자동 생성되므로 직접 편집하지 않습니다. `worker/handler.mjs`는 허용된 정적 파일만 응답하고 HTTP 보안 헤더를 붙이며 사용자 기록을 수집하거나 저장하지 않습니다. GitHub Pages는 Worker 없이 같은 브라우저 게임을 실행합니다.
 
 동네 정보는 `dist/places.js`에 역 ID를 키로 추가합니다. 음식이 없는 지역을 억지로 특산품으로 지정하지 않고, 대표적인 지역 음식이나 음식 문화를 구분해 안내했습니다. 지도는 학습용 개략도이며 길찾기 서비스가 아닙니다. 현재 싱글 플레이이며 실시간 멀티플레이와 서버 랭킹은 포함하지 않습니다.
 
