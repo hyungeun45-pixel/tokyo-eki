@@ -1,4 +1,5 @@
 import {accepts,normalize} from './game.js';
+import {countTypingUnits} from './speed.js';
 export const defaults=Object.freeze({theme:'dark',movement:'dynamic',departure:'manual',backspace:'jamo',sound:true,volume:35,skin:'garden',landmarks:true,labels:true,follow:true,zoom:150,language:'ko',layer:'all',countdown:3});
 export function sanitizeSettings(raw={}){
  raw=raw&&typeof raw==='object'&&!Array.isArray(raw)?raw:{};
@@ -9,7 +10,7 @@ export function sanitizeSettings(raw={}){
  return s;
 }
 export class Run {
- constructor(stations,mode='travel',now=()=>performance.now()){this.stations=stations;this.mode=mode;this.now=now;this.status='ready';this.index=0;this.correct=0;this.attempts=0;this.hints=0;this.duration=0;this.deadline=120;this.moving=false;}
+ constructor(stations,mode='travel',now=()=>performance.now()){this.stations=stations;this.mode=mode;this.now=now;this.status='ready';this.index=0;this.correct=0;this.attempts=0;this.hints=0;this.units=0;this.duration=0;this.deadline=120;this.moving=false;}
  start(){if(this.status!=='ready')return false;this.status='running';this.started=this.now();return true;}
  elapsed(){return this.status==='running'?this.duration+(this.now()-this.started)/1000:this.duration;}
  expired(){return this.mode==='time'&&this.elapsed()>=this.deadline;}
@@ -23,7 +24,7 @@ export class Run {
   if(!normalize(value))return {type:'empty'};
   this.attempts++;
   if(!accepts(this.stations[this.index],value))return {type:'wrong'};
-  const station=this.stations[this.index++];this.correct++;
+  const station=this.stations[this.index++];this.correct++;this.units+=countTypingUnits(value);
   const complete=this.index===this.stations.length;
   if(complete)this.stop();
   return {type:'correct',station,complete,position:this.index-1};
