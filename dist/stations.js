@@ -704,8 +704,8 @@ export const lines = [
       {
         "id": "meiji-jingumae",
         "code": "C03",
-        "ko": "메이지진구마에 &lt;하라주쿠&gt;",
-        "en": "Meiji-jingumae &lt;Harajuku&gt;",
+        "ko": "메이지진구마에 〈하라주쿠〉",
+        "en": "Meiji-jingumae 〈Harajuku〉",
         "ja": "明治神宮前〈原宿〉"
       },
       {
@@ -753,8 +753,8 @@ export const lines = [
       {
         "id": "nijubashimae",
         "code": "C10",
-        "ko": "니주바시마에 &lt;마루노우치선&gt;",
-        "en": "Nijubashimae &lt;Marunouchi&gt",
+        "ko": "니주바시마에 〈마루노우치선〉",
+        "en": "Nijubashimae 〈Marunouchi〉",
         "ja": "二重橋前〈丸の内〉"
       },
       {
@@ -1107,8 +1107,8 @@ export const lines = [
       {
         "id": "oshiage",
         "code": "Z14",
-        "ko": "오시아게 &lt;스카이트리앞&gt;",
-        "en": "Oshiage &lt;SKYTREE&gt;",
+        "ko": "오시아게 〈스카이트리앞〉",
+        "en": "Oshiage 〈SKYTREE〉",
         "ja": "押上〈スカイツリー前〉"
       }
     ]
@@ -1363,8 +1363,8 @@ export const lines = [
       {
         "id": "meiji-jingumae",
         "code": "F15",
-        "ko": "메이지진구마에 &lt;하라주쿠&gt;",
-        "en": "Meiji-jingumae &lt;Harajuku&gt;",
+        "ko": "메이지진구마에 〈하라주쿠〉",
+        "en": "Meiji-jingumae 〈Harajuku〉",
         "ja": "明治神宮前〈原宿〉"
       },
       {

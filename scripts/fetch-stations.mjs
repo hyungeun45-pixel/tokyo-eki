@@ -1,4 +1,5 @@
 import { mkdir, writeFile } from 'node:fs/promises';
+import {cleanStationName} from './station-text.mjs';
 const definitions = [
  ['G','ginza','긴자선','Ginza Line','#e8a328'],['M','marunouchi','마루노우치선','Marunouchi Line','#e55652'],
  ['H','hibiya','히비야선','Hibiya Line','#8c9ba5'],['T','tozai','도자이선','Tozai Line','#36a7c7'],
@@ -6,7 +7,7 @@ const definitions = [
  ['Z','hanzomon','한조몬선','Hanzomon Line','#9673bc'],['N','namboku','난보쿠선','Namboku Line','#35a49c'],
  ['F','fukutoshin','후쿠토신선','Fukutoshin Line','#af7858']
 ];
-const clean = s => s.replace(/<[^>]*>/g,'').replace(/&amp;/g,'&').replace(/\s+/g,' ').trim();
+const clean = cleanStationName;
 async function get(slug,lang) {
  const url=`https://www.tokyometro.jp/${lang==='ja'?'':`lang_${lang}/`}station/line_${slug}/index.html`;
  const r=await fetch(url); if(!r.ok) throw Error(`${r.status}: ${url}`);

@@ -1,4 +1,5 @@
 import {accepts,stationAliases} from './game.js';
+import {decodeHtmlText} from './text.js';
 const leads=[...'ㄱㄲㄴㄷㄸㄹㅁㅂㅃㅅㅆㅇㅈㅉㅊㅋㅌㅍㅎ'];
 const vowels=[...'ㅏㅐㅑㅒㅓㅔㅕㅖㅗㅘㅙㅚㅛㅜㅝㅞㅟㅠㅡㅢㅣ'];
 const tails=['',...'ㄱㄲㄳㄴㄵㄶㄷㄹㄺㄻㄼㄽㄾㄿㅀㅁㅂㅄㅅㅆㅇㅈㅊㅋㅌㅍㅎ'];
@@ -7,7 +8,7 @@ const expand=char=>[...(compounds[char]||char)];
 // Logical correct keystrokes for standard two-set Korean. Shift is not counted.
 // English letters/digits count once; Japanese counts committed characters.
 export function typingTokens(value){
- const cleaned=String(value).normalize('NFKC').toLowerCase().replace(/[\s\-‐‑–—・･ー·,.'’()（）〈〉<>]/g,'').replace(/駅$|역$/g,'');
+ const cleaned=decodeHtmlText(value).normalize('NFKC').toLowerCase().replace(/[\s\-‐‑–—・･ー·,.'’()（）〈〉<>]/g,'').replace(/駅$|역$/g,'');
  const tokens=[];for(const char of cleaned){const cp=char.codePointAt(0);
   if(cp>=0xac00&&cp<=0xd7a3){const n=cp-0xac00;tokens.push(...expand(leads[Math.floor(n/588)]),...expand(vowels[Math.floor(n%588/28)]),...expand(tails[n%28]));}
   else if(cp>=0x1100&&cp<=0x1112)tokens.push(...expand(leads[cp-0x1100]));
