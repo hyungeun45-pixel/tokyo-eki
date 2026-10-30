@@ -30,5 +30,5 @@ export const places={
  oshiage:{title:'오시아게',ja:'押上',sight:'도쿄 스카이트리',sightJa:'東京スカイツリー',description:'스미다 지역의 하늘을 향해 뻗은 도쿄의 랜드마크. 타워 아래의 상점가와 옛 동네 풍경도 함께 살펴봐요.',food:'상점가의 디저트',foodDescription:'스카이트리 주변 상점에서 여행 간식을 찾아보세요.',emoji:'🍦',icon:'tower',tag:'하늘 위 도쿄',url:'https://www.gotokyo.org/en/destinations/eastern-tokyo/skytree-and-around/index.html'}
 };
 // Official slugs differ from common romanizations for some stations.
-places.omotesando=places['omote-sando']; places['ueno-hirokoji']=places['ueno-hirokoji'];
+places.omotesando=places['omote-sando']; places.gaiemmae=places.gaienmae;
 export function getPlace(s){return places[s.id]||{title:s.ko,ja:s.ja,sight:`${s.ko} 동네 산책`,sightJa:s.ja,description:'이번 역의 이름과 노선 위치를 기억해 보세요. 자세한 주변 여행 정보는 도쿄 공식 관광 안내에서 찾아볼 수 있어요.',food:'주변 먹거리 찾아보기',foodDescription:'이 역의 개별 먹거리 정보는 준비 중이에요. 공식 관광 안내에서 지역을 탐색해 보세요.',emoji:'🗺️',icon:'station',tag:'새로운 동네',url:'https://www.gotokyo.org/kr/',generic:true};}

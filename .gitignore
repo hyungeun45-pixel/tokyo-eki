@@ -4,3 +4,11 @@ node_modules/
 *.tar.gz
 *.log
 screenshots/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+coverage/
