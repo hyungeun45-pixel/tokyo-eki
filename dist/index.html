@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ko">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="theme-color" content="#214e41"><meta name="description" content="한 정거장씩 입력하며 발견하는 도쿄. 한국어, 영어, 일본어로 즐기는 도쿄메트로 타이핑 여행.">
+ <title>도쿄 한 정거장 — Tokyo Eki</title>
+ <link rel="icon" href="./favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+ <header class="header">
+  <a class="brand" href="./" aria-label="도쿄 한 정거장 홈"><span class="brand-icon">駅</span><span>도쿄 한 정거장<small>TOKYO EKI · TYPING TRIP</small></span></a>
+  <nav aria-label="주 메뉴"><button class="nav-tab active" data-view="play">타이핑 여행</button><button class="nav-tab" data-view="collection">나의 여행 수첩 <span id="collection-count">0</span></button></nav>
+  <button class="help-button" id="help">? <span>이용 방법</span></button>
+ </header>
+ <main>
+  <section class="intro"><div><p class="eyebrow"><span></span> TYPE YOUR WAY THROUGH TOKYO</p><h1>한 정거장씩, 도쿄를 발견하다<span>。</span></h1><p class="intro-copy">역 이름을 입력하고, 그 동네의 이야기를 만나 보세요.</p></div><div class="intro-stamp">東京<br><small>작은 여행의 시작</small><span>35°40′ N 139°45′ E</span></div></section>
+  <section id="play-view" class="game-layout">
+   <aside class="route-panel panel">
+    <div class="panel-heading"><span class="section-number">01</span><h2>어디로 떠날까요?</h2><span class="micro">SELECT LINE</span></div>
+    <div class="line-grid" id="line-grid" aria-label="도쿄메트로 노선 선택"></div>
+    <div class="route-summary"><span id="line-badge" class="line-badge">G</span><div><h3 id="line-name">긴자선</h3><p id="line-english">Ginza Line</p></div><span class="station-total" id="station-total"></span></div>
+    <div class="direction-row"><span id="direction-description"></span><button id="reverse" title="진행 방향 바꾸기" aria-label="진행 방향 바꾸기">⇅</button></div>
+    <div class="station-list" id="station-list" aria-label="역 순서"></div>
+    <div class="route-note"><span>ⓘ</span><p>도쿄메트로 공식 노선 기준<br>역 이름과 동네를 함께 익혀요.</p></div>
+   </aside>
+   <section class="journey-panel">
+    <div class="map-panel panel">
+     <div class="map-topbar"><div><span class="live-dot"></span><strong>도쿄 산책 지도</strong><span class="map-subtitle">TOKYO NEIGHBORHOOD MAP</span></div><div class="map-filter"><button class="selected" data-layer="all">전체</button><button data-layer="sight">명소</button><button data-layer="food">먹거리</button></div></div>
+     <div class="map-stage"><svg id="map" viewBox="0 0 960 590" role="img" aria-label="선택한 노선과 역 주변 관광지를 보여 주는 학습용 도쿄 지도"></svg><div class="map-compass">N<span>↑</span></div><div class="map-caption"><span class="legend-line"></span><span id="map-line-label">긴자선</span><span class="legend-stop"></span> 지하철역</div><div class="map-scale">학습용 개략도 · 실제 거리와 다름</div><div class="map-zoom"><button id="zoom-in" aria-label="지도 확대">+</button><button id="zoom-out" aria-label="지도 축소">−</button><button id="zoom-reset" aria-label="지도 원래 크기">⌖</button></div></div>
+     <div class="map-footer"><span>✦ 역을 클릭하면 주변 이야기를 볼 수 있어요</span><span><span class="tiny-dot"></span> 9 LINES · TOKYO METRO</span></div>
+    </div>
+    <section class="typing-panel panel">
+     <div class="typing-top"><div class="mode-tabs" aria-label="게임 모드"><button class="active" data-mode="travel">여행 모드</button><button data-mode="memory">암기 모드</button><button data-mode="time">타임어택</button></div><button id="sound" class="text-button" aria-pressed="false">♪ 소리 꺼짐</button></div>
+     <div class="typing-main"><div class="next-station"><span class="eyebrow" id="target-label">NEXT STATION · 다음 역</span><div><span id="target-code" class="station-code">G19</span><h2 id="target-name"></h2><button id="hint" title="정답 힌트" aria-label="역 이름 힌트">💡</button></div><p id="target-translations"></p></div><div class="stats"><div><strong id="time">00:00</strong><span id="time-label">여행 시간</span></div><div><strong id="accuracy">100<small>%</small></strong><span>정확도</span></div><div><strong id="progress-count">0<small>/ 19</small></strong><span>도착한 역</span></div></div></div>
+     <form id="typing-form" autocomplete="off"><span class="input-icon">⌨</span><input id="station-input" aria-label="역 이름 입력" placeholder="역 이름을 입력하고 Enter ↵" autocapitalize="off" spellcheck="false"><button type="submit" id="start-button">여행 시작 <span>→</span></button></form>
+     <div class="input-bottom"><div class="language-tabs" aria-label="역 이름 표시 언어"><button class="active" data-lang="ko">한국어</button><button data-lang="en">English</button><button data-lang="ja">日本語</button><span>세 언어 모두 정답으로 인정해요</span></div><button id="restart" class="text-button">↻ 다시 시작</button></div>
+     <div class="feedback" id="feedback" role="status" aria-live="polite">여행 시작을 누르면 첫 역부터 출발해요.</div><div class="progress-track"><div id="progress-bar"></div></div>
+    </section>
+   </section>
+   <aside class="discovery-panel panel"><div class="panel-heading"><span class="section-number">02</span><h2>이번 역의 발견</h2></div><div id="discovery"></div><div class="discovery-tip"><span>旅</span><p>이름을 알면, 여행이 달라져요.<br><strong>오늘은 어느 동네를 기억할까요?</strong></p></div></aside>
+  </section>
+  <section id="collection-view" class="panel collection-view" hidden><div class="collection-header"><div><p class="eyebrow">MY LITTLE TOKYO JOURNAL</p><h2>나의 여행 수첩</h2><p>직접 입력해 도착한 동네와 여행 기록을 모았어요.</p></div><button id="export-journal">수첩 내보내기 ↓</button></div><div id="journal-stats"></div><div id="journal-places" class="journal-grid"></div><h3>최근 완주 기록</h3><div id="journal-records"></div></section>
+  <footer class="footer"><span><strong>도쿄 한 정거장</strong> 작은 입력, 새로운 발견.</span><span>비공식 학습 게임 · <a href="https://www.tokyometro.jp/kr/subwaymap/index.html" target="_blank" rel="noopener noreferrer">노선 정보: Tokyo Metro ↗</a><button id="sources">자료 안내</button></span></footer>
+ </main>
+ <dialog id="modal"><button id="close-modal" aria-label="창 닫기">×</button><div id="modal-content"></div></dialog>
+ <script type="module" src="./app.js"></script>
+</body>
+</html>
